@@ -1,8 +1,11 @@
 <script setup>
+
 </script>
 
 <template>
-    <router-view></router-view>
+  <div>
+    <h1>about</h1>
+  </div>
 </template>
 
 <style scoped>
