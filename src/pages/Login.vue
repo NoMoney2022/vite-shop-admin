@@ -41,8 +41,9 @@
                     </el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submitForm" class="w-full" round color="#6366f1">
-                        Create
+                    <el-button :loading="loading" type="primary" @click="submitForm" class="w-full" round
+                               color="#6366f1">
+                        登陆
                     </el-button>
                 </el-form-item>
             </el-form>
@@ -55,7 +56,6 @@ import {reactive, ref} from 'vue'
 import {Lock, User} from "@element-plus/icons-vue";
 
 const ruleFormRef = ref(null)
-
 const ruleForm = reactive({
     username: '',
     password: '',
@@ -72,12 +72,29 @@ const rules = reactive({
     ]
 })
 
+import {login} from "../api/management.js";
+import {toast, setCookie} from "../tools.js";
+import {useRouter} from "vue-router";
+
+const router = useRouter()
+const loading = ref(false)
 const submitForm = () => {
     ruleFormRef.value.validate((valid) => {
         if (!valid) {
             return false
         }
-        console.log('验证通过')
+        loading.value = true
+        login(ruleForm)
+            .then(res => {
+                toast('登陆成功')
+                setCookie('token', res.data.token)
+                console.log("res", res)
+                router.push('/')
+            })
+            .finally(() => {
+                loading.value = false
+
+            })
     })
 }
 </script>

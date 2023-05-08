@@ -1,9 +1,9 @@
 import axios from '../axios.js'
 
-export const getManagementList = (params) => {
+export const login = (params) => {
     return axios({
-        url: '/management/list',
-        method: 'get',
+        url: '/login',
+        method: 'post',
         params
     })
 }

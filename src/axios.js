@@ -1,9 +1,9 @@
 import axios from "axios";
+import {toast} from "./tools";
 
 const instance = axios.create({
-    baseURL: 'https://some-domain.com/api/',
-    timeout: 1000,
-    // headers: {'X-Custom-Header': 'foobar'}
+    baseURL: '/api',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 });
 // Add a request interceptor
 instance.interceptors.request.use(function (config) {
@@ -11,6 +11,7 @@ instance.interceptors.request.use(function (config) {
     return config;
 }, function (error) {
     // Do something with request error
+
     return Promise.reject(error);
 });
 
@@ -18,10 +19,12 @@ instance.interceptors.request.use(function (config) {
 instance.interceptors.response.use(function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
-    return response;
+    return response.data;
 }, function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
+    toast(error.response.data.msg, 'error')
+    console.log('error', error.response.data)
     return Promise.reject(error);
 });
 

@@ -17,4 +17,13 @@ export default defineConfig({
             resolvers: [ElementPlusResolver()],
         }),
     ],
+    server: {
+        proxy: {
+            '/api': {
+                target: 'http://ceshi13.dishait.cn/admin',
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/api/, ''),
+            },
+        }
+    }
 })
