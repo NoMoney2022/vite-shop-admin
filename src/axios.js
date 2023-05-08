@@ -1,5 +1,5 @@
 import axios from "axios";
-import {toast} from "./tools";
+import {toast} from "./tools/tools.js";
 
 const instance = axios.create({
     baseURL: '/api',

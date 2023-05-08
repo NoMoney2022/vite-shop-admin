@@ -72,8 +72,8 @@ const rules = reactive({
     ]
 })
 
-import {login} from "../api/management.js";
-import {toast, setCookie} from "../tools.js";
+import {login} from "../tools/management.js";
+import {toast, setCookie} from "../tools/tools.js";
 import {useRouter} from "vue-router";
 
 const router = useRouter()
