@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
+    "@supabase/supabase-js": "^2.21.0",
     "@vueuse/core": "^10.1.2",
     "@vueuse/integrations": "^10.1.2",
     "axios": "^1.4.0",
